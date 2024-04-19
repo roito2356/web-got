@@ -1,0 +1,579 @@
+@charset "utf-8";
+
+/*
+html5doctor.com Reset Stylesheet
+v1.4
+2009-07-27
+Author: Richard Clark - http://richclarkdesign.com
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, menu, nav, article,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+
+article, aside, dialog, figure, footer, header,
+hgroup, nav, article {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #000;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+/* End Reset CSS */
+
+
+/* スマートフォン用画面幅768以下のとき */
+html {
+    color: #54514c;
+    font-size: 10px;
+}
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+/* header Start */
+header {
+    z-index: 100;	/*黒い幕150の次の表に表示させるため重み付けをしておく*/
+    position: fixed; /*ナビバーの固定*/
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+}
+header h1 {
+    position: absolute; /*親要素(headerが指定されている)を基準に配置が出来る*/
+    top: 18px;
+    left: 15px;
+}
+header .logo img {
+    width: 200px;
+}
+
+/*バーガーボタンの中のメニュースタイル Start*/
+header nav {
+    z-index: 170; /*バーガーボタン200の次の表に表示させる*/
+    box-sizing: border-box; /*paddingとborderを含めたサイズになる*/
+    position: fixed; /*ナビバー文字の固定*/
+    top: 60px;
+    /* display: none; おそらく必要ない*/
+    width: 50%;  /*幅をナビバーの半分にする*/
+    height: calc(100% - 60px); /*メニューの高さを画面の高さの100%からheaderの高さ60pxを引いた値にする */
+    background-color: rgba(255, 255, 255, 0.9); /*背景色を白色で透明度10%にする /opcity:0.9;は子要素にも透明度を与えてしまうため*/
+    /* 3. スライドメニューの場合 */
+    display: block;
+    right: -100%; /*右側の画面外に100%に移動させておく*/
+    transition: right .5s; /*右からなめらかに変化(スライド)させるため*/
+    /* ここまで */
+}
+/*バーガーボタン開いたときのメニュー表示*/
+/* 3. スライドメニューの場合 */
+header nav.sp_open {
+    right: 0; /*右側、画面外100%を0にする*/
+}
+/* ここまで */
+
+
+header nav ul {
+    /*メニュー文字セットを中央配置*/
+    position: absolute; /*親要素(headerが指定されている)を基準に配置が出来る*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*自分自身の左に50%、上に50%(水平移動)戻している*/
+}
+
+header nav ul li {
+    margin: 10px;
+    background-color: #FFF;
+}
+
+header nav ul li a {
+    display: block;
+    padding: 25px;
+    border-radius: 5px;
+    color: #666;
+    font-size: 1.8rem;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #666;
+}
+
+/* メニュークリック時のスタイル */
+header nav ul li a:active {
+    background: #54514c; 
+    border-bottom: 1px solid #333; /*バーガーメニューごとの下線*/
+    color:#fff;
+}
+
+/*ナビバーの表示中のリンクスタイル*/
+/* HTMLのJSで記述した現在URL取得でclass"showing"取得 */
+header nav ul li .showing {
+    border: none; /*枠線を消すため*/
+    background: #e4e4e4;
+    color: #9c9b98;
+}
+/*バーガーボタンの中のメニュースタイル End*/
+
+/*バーガーボタンスタイル Start*/
+#drawer_toggle {
+    z-index: 200; /*メニューバーより上に表示させるので、重み付けする*/
+    position: absolute; /*親要素(headerが指定されている)を基準に配置が出来る*/
+    top: 10px;
+    right: 10px;
+	display: block; /*ブロック要素指定*/
+    width: 40px;
+    height: 40px;
+    border: 1px solid #666;/*バーガーボタンの枠線*/
+    border-radius: 5px; /*枠線の角丸*/
+}
+#drawer_toggle span {
+    position: absolute;/*配置を自由にする(配置設定を外す)*/
+    display: block;
+    left: 5px;
+    right: 5px;
+    width: 30px;
+    height: 2px;
+    background-color: #666;
+    transition: all 0.5s;
+    border-radius: 4px;
+}
+
+/*バーガーボタンボーダー位置調整*/ 
+/*やり方は、まず真ん中(2)の線を高さ中心に置きます。中心の高さ=(ボタンの高さ/2)-(線の太さ/2)
+そして、両端の線(1)(3)は、傾きを45度にして、×ボタンが綺麗にできるように同じ幅で整える*/
+#drawer_toggle span:nth-child(1) {
+    top: 9px;
+}
+#drawer_toggle span:nth-child(2) {
+    top: 19px;
+}
+#drawer_toggle span:nth-child(3) {
+    bottom: 9px;
+}
+
+/*バーガーボタンを開いたときのスタイル*/
+#drawer_toggle.open {
+    border: 2px solid #FFF;
+}
+/*IDとクラス名↓の間はスペースを空けない*/
+#drawer_toggle.open span {
+    background-color: #fff;
+}
+
+/*バーガーボタンボーダーアニメーション*/
+#drawer_toggle.open span:first-child {
+    transform: translateY(10px) rotate(-315deg); /*first(1)下に10px -315度回転*/
+}
+#drawer_toggle.open span:nth-child(2) {
+    opacity: 0; /*(2)は透明化*/
+}
+#drawer_toggle.open span:last-child {
+    transform: translateY(-10px) rotate(315deg); /*last(3)上に10px 315度回転*/
+}
+/* バーガーボタンスタイル End */
+
+/* ボタンメニューを開いたときナビバー以外に黒い幕を掛ける */
+#mask {
+    display: none; /*非表示*/
+    transition: all 0.8s ease-in-out;
+}
+
+.open #mask {
+    display: block; /*display: none;(非表示)からdisplay: block;で表示*/
+    background: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed; /*要素を固定された位置に表示*/
+    opacity: 0.7; /*透過率を30%にする*/
+    z-index: 150; /*ナビバーの後ろに表示させたいので、170の次の150を重み付けする*/
+    cursor: pointer; /*黒い幕でもマウスを手形に変える*/
+}
+/* header End */
+
+/* main */
+main {
+    font-size: 1.6rem;
+}
+main h2 {
+	box-sizing: border-box;
+    width: 100%;
+    padding-left: 15px;
+    background-color: #b99566;
+    color: #fff;
+    font-weight: normal;
+    line-height: 40px;
+}
+main h2 span {
+    display: none;
+}
+#key_visual {
+    width: 100%;
+    max-width: 1500px;
+    padding-top: 60px;
+    margin: 0 auto;
+}
+#key_visual img {
+    width: 100%;
+    vertical-align: bottom;
+}
+#information ul {
+    list-style: none;
+    font-size: 1.4rem;
+}
+#information ul li {
+    padding: 5px 10px;
+}
+#information ul li:nth-child(even) {
+    background-color: #f5f3f0;
+}
+#information ul li time {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.2rem;
+}
+#information ul li p {
+    line-height: 1.5;
+}
+#information ul li p::before {
+    content: "▶︎";
+    margin-right: 5px;
+    font-size: 1.2rem;
+    vertical-align: top;
+}
+
+/* gourmet */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+#gourmet .container {
+    padding: 10px;
+}
+#gourmet h3 {
+    margin-bottom: 7px;
+}
+
+.add-search{
+  width: 100%;
+  text-align: center;
+}
+
+#search-form{
+  margin-top: 20px;
+}
+
+#gourmet .stores {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;  
+}
+
+#gourmet article {
+    width: 50%;
+    margin: 1.5rem;
+    /* flex: 1 1 30%; */
+}
+#gourmet article figure {
+    margin-bottom: 10px;
+}
+#gourmet article figure img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+}
+#gourmet article p {
+    font-size: 1.4rem;
+}
+#gourmet article p::before {
+    content: "-";
+    padding: 0 10px;
+}
+#gourmet .box_ttl {
+    padding: 5px 0 5px 10px;
+    border-left: 4px solid #402805;
+    margin-bottom: 10px;
+}
+#gourmet .area li {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    background-color: #b99566;
+    color: #FFF;
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
+}
+/* gourmet */
+/* main End */
+
+/* footer */
+footer {
+    text-align: center;
+}
+footer .logo {
+    margin: 15px 0 10px;
+}
+footer .logo img {
+    width: 160px;
+}
+footer ul {
+    padding: 20px 0;
+    background-color: #54514c;
+    text-align: center;
+}
+footer ul li {
+    width: 280px;
+    height: 30px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    margin: 10px auto;
+    font-size: 1.4rem;
+    line-height: 30px;
+    text-decoration: none;
+}
+footer ul li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    transition: color .3s;
+}
+footer ul li a:hover {
+    background-color: #fff;
+    color: #54514c;
+}
+footer p {
+    text-align: center;
+}
+footer p small {
+    font-size: 1rem;
+    line-height: 3em;
+}
+/* footer End */
+
+
+/* パソコン用、画面幅が768pxを上回った時のレスポンシブ */
+@media (min-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+    header {
+        height: 80px;
+    }
+    header h1 {
+        top: 24px;
+        left: 25px;
+    }
+    header .logo img {
+        width: 250px;
+    }
+    header nav {
+        display: inline-block;
+        position: absolute;
+        top: 22px;
+        right: 0;
+        width: auto;
+        height: auto;
+        margin-right: 15px;
+        font-size: 1.4rem;
+        opacity: 1;
+    }
+    header nav ul {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: unset;
+        width: 535px;
+    }
+    header nav ul li {
+        display: inline-block;
+        height: 35px;
+        border-radius: 2px;
+		line-height: 35px;
+    }
+    header nav ul li a {
+        display: block;
+		padding: 0 15px;
+        color: #9c9b98;
+        font-size: unset;
+        text-decoration: none;
+        transition: color .3s;
+    }
+    header nav ul li:hover {
+        background-color: #b99566;
+    }
+    header nav ul li:hover a {
+    	color: #fff;
+    }
+    #drawer_toggle {
+        display: none;
+    }
+    #key_visual {
+        padding-top: 80px;
+        margin-bottom: 30px;
+    }
+    main {
+        padding-bottom: 50px;
+    }
+    main h2 {
+        padding-left: 20px;
+    }
+    #information {
+        margin-bottom: 50px;
+    }
+    #information ul {
+        font-size: 1.2rem;
+    }
+    #information ul li time {
+        display: inline-block;
+        padding-right: 10px;
+    }
+    #information ul li p {
+        display: inline-block;
+        line-height: 1;
+    }
+    #information ul li p::before {
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    #gourmet .container {
+		justify-content: space-between;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+    }
+    #gourmet article {
+        width: calc(50% - 5px);
+        padding: 0;
+    }
+    footer ul li {
+        display: inline-block;
+        width: 120px;
+        margin: 0 10px;
+    }
+    footer ul li a {
+        color: #fff;
+    }
+    footer .logo {
+        margin: 20px 0 5px;
+    }
+    footer .logo img {
+        width: 200px;
+    }
+}
+
+@media (min-width: 1000px) {
+    main {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    #gourmet .container {
+        padding: 10px 0;
+    }
+    #gourmet article {
+        width: calc(50% - 5px);
+    }
+}
+
+/* slick(スライダー) */
+/* スライドが読み込み時に一瞬縦並びに表示される現象の対処法 */
+.slider{
+    visibility: hidden; /*スライダー非表示*/
+}
+/* クラス名："slider-initialized"は、スライダーの準備が出来たらこのクラス名が付与される */
+.slider.slick-initialized{
+    visibility: visible; /*スライダー表示*/
+}
+
+/* スライダーが画面からはみ出す原因 */
+.slick-prev, .slick-next{
+    z-index: 1; /*前後の矢印ボタンを手前に表示させる為に、重み付けをする*/
+}
+/* 前←矢印ポタン */
+.slick-prev{
+    left: 10px; /*元がleft:-25px;になっていて、画面からはみ出している*/
+}
+/* 後→矢印ポタン */
+.slick-next{
+    right: 10px; /*元がright:-25px;になっていて、画面からはみ出している*/
+}
