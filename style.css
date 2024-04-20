@@ -127,7 +127,7 @@ header .logo img {
     width: 200px;
 }
 
-/*バーガーボタンの中のメニュースタイル Start*/
+/*ヘッダーまたはバーガーボタンの中のメニュースタイル Start*/
 header nav {
     z-index: 170; /*バーガーボタン200の次の表に表示させる*/
     box-sizing: border-box; /*paddingとborderを含めたサイズになる*/
@@ -183,13 +183,14 @@ header nav ul li a:active {
 }
 
 /*ナビバーの表示中のリンクスタイル*/
-/* HTMLのJSで記述した現在URL取得でclass"showing"取得 */
-header nav ul li .showing {
-    border: none; /*枠線を消すため*/
-    background: #e4e4e4;
+
+/* JSで記述した現在URL取得のclass"highlight"のスタイル */
+header nav ul li .highlight, footer ul li .highlight {
+    opacity: 0.8; /*50%透過*/
     color: #9c9b98;
+    border-color: #9c9b98;
 }
-/*バーガーボタンの中のメニュースタイル End*/
+/*ヘッダーまたはバーガーボタンの中のメニュースタイル End*/
 
 /*バーガーボタンスタイル Start*/
 #drawer_toggle {
@@ -406,7 +407,6 @@ footer ul {
 footer ul li {
     width: 280px;
     height: 30px;
-    border: 1px solid #fff;
     border-radius: 2px;
     margin: 10px auto;
     font-size: 1.4rem;
@@ -417,6 +417,7 @@ footer ul li a {
     display: block;
     text-decoration: none;
     color: #fff;
+    border: 1px solid #fff;
     transition: color .3s;
 }
 footer ul li a:hover {
@@ -474,8 +475,7 @@ footer p small {
     }
     header nav ul li a {
         display: block;
-		padding: 0 15px;
-        color: #9c9b98;
+		    padding: 0 15px;
         font-size: unset;
         text-decoration: none;
         transition: color .3s;
@@ -484,7 +484,7 @@ footer p small {
         background-color: #b99566;
     }
     header nav ul li:hover a {
-    	color: #fff;
+    	  color: #fff;
     }
     #drawer_toggle {
         display: none;
@@ -518,9 +518,9 @@ footer p small {
         vertical-align: middle;
     }
     #gourmet .container {
-		justify-content: space-between;
-		-webkit-box-pack: justify;
-		-ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
     }
     #gourmet article {
         width: calc(50% - 5px);

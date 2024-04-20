@@ -1,18 +1,26 @@
-// 開いているページのナビバーのリストにスタイルを当てるため
-//現在開いているページの定数'currentUrl'でURL格納する
-const currentUrl = window.location.href;
-//<header>内にある<a>を全て定数'headerLinks'に格納する
-const headerLinks = document.querySelectorAll('header nav a');
-const show = document.querySelector("header nav .showing");
+// 開いているページのナビバーのリストにスタイルを当てるための関数
+function highlightCurrentLink() {
+  // 現在のページのURLを取得
+  const currentUrl = window.location.href;
 
-// 'headerLinks'定数に格納された<a>要素を1つずつ取り出し、
-// 'headerLinks'定数に格納された要素分繰り返す forEach
-headerLinks.forEach(link => {
-  if (link.getAttribute('href') === currentUrl) { //リンクのhref属性が現在のURLと一致するかどうかを確認する。
-    show.classList.remove("showing");
-    link.classList.add('showing');                //一致する場合は、リンクにshowingというクラスを追加する。
-  }
-});
+  // すべての<a>タグを取得
+  const links = document.querySelectorAll('a');
+
+  // それぞれの<a>タグのhrefと現在のURLを比較し、一致する場合にclassを追加
+  links.forEach(link => {
+    if (link.href === currentUrl) {
+      link.classList.add('highlight');
+    } else {
+      link.classList.remove('highlight');
+    }
+  });
+}
+
+// ページ読み込み時に上記の実行
+window.addEventListener('load', highlightCurrentLink);
+
+// ページ遷移時にも上記の実行
+window.addEventListener('hashchange', highlightCurrentLink);
 
 
 //バーガーボタンがクリックされたときのバーガーメニューのでかた
