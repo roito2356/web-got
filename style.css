@@ -348,12 +348,11 @@ main h2 span {
   width: 100%;
   display: flex;
   flex-wrap: wrap;  
+  justify-content: space-evenly; /*水平方向均等揃え*/
 }
 
 #gourmet article {
-    width: 50%;
-    margin: 1.5rem;
-    /* flex: 1 1 30%; */
+    margin: 1rem;
 }
 #gourmet article figure {
     margin-bottom: 10px;
@@ -523,7 +522,6 @@ footer p small {
         -ms-flex-pack: justify;
     }
     #gourmet article {
-        width: calc(50% - 5px);
         padding: 0;
     }
     footer ul li {
@@ -549,9 +547,6 @@ footer p small {
     }
     #gourmet .container {
         padding: 10px 0;
-    }
-    #gourmet article {
-        width: calc(50% - 5px);
     }
 }
 
