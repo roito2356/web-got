@@ -131,7 +131,7 @@ $(".slider").slick({
 const addArticleForm = document.getElementById('add-article-form');
 addArticleForm.addEventListener('submit', addArticle);
 
-// 新しいアイテムを追加する機能
+// 新しいアイテムを追加する関数
 function addArticle(e) {
   e.preventDefault(); // フォームの送信をキャンセルする
   
